@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>General Weighted Average</title>
+	<style>
+		body {
+			font-family: Arial Narrow, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+		}
+
+		form {
+			max-width: 250px;
+			margin: 0 auto;
+			margin-left: 530px;
+			text-align: left;
+		}
+
+		input[type="number"] {
+			width: 50px;
+			margin: 10px;
+		}
+
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+
+		.result {
+			font-size: 24px;
+			font-weight: bold;
+			margin-top: 50px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<h1>General Weighted Average</h1>
+	<form onsubmit="calculate(event)">
+		<label for="math">Math:</label>
+		<input type="number" id="math" name="math" min="0" max="100" required><br>
+
+		<label for="science">Science:</label>
+		<input type="number" id="science" name="science" min="0" max="110" required><br>
+
+		<label for="history">Filipino:</label>
+		<input type="number" id="filipino" name="filipino" min="0" max="110" required><br>
+
+		<label for="english">English:</label>
+		<input type="number" id="english" name="english" min="0" max="110" required><br>
+
+		<label for="art">History</label>
+		<input type="number" id="history" name="history" min="0" max="110" required><br>
+
+		<label for="music">Music:</label>
+		<input type="number" id="music" name="music" min="0" max="110" required><br>
+
+		<label for="pe">Physical Education:</label>
+		<input type="number" id="pe" name="pe" min="0" max="110" required><br>
+
+		<br><input type="submit" value="Calculate Weighted Average">
+	</form>
+
+	<p class="result" id="result"></p>
+
+	<script>
+		function calculate(event) {
+  		event.preventDefault();
+
+		  var math = Number(document.getElementById('math').value);
+		  var science = Number(document.getElementById('science').value);
+		  var filipino = Number(document.getElementById('filipino').value);
+		  var english = Number(document.getElementById('english').value);
+		  var history = Number(document.getElementById('history').value);
+		  var music = Number(document.getElementById('music').value);
+		  var pe = Number(document.getElementById('pe').value);
+
+		  var total = math + science + filipino + english + history + music + pe;
+		  var weightedAverage = total / 7;
+
+		  var descriptor = "";
+			  if (weightedAverage < 75) {
+			    descriptor = "DID NOT MEET EXPECTATIONS";
+			  } else if (weightedAverage >= 75 && weightedAverage <= 79) {
+			    descriptor = "FAIRLY SATISFACTORY";
+			  } else if (weightedAverage >= 80 && weightedAverage <= 84) {
+			    descriptor = "SATISFACTORY";
+			  } else if (weightedAverage >= 85 && weightedAverage <= 89) {
+			    descriptor = "VERY SATISFACTORY";
+			  } else if (weightedAverage >= 90 && weightedAverage <= 100) {
+			    descriptor = "OUTSTANDING";
+			  } else {
+			    descriptor = "DOES NOT EXIST";
+			  }
+
+		  var remarks = "";
+			  if (weightedAverage < 75) {
+			    remarks = "FAILED";
+			  } else if (weightedAverage >= 75 && weightedAverage <= 79) {
+			    remarks = "PASSED";
+			  } else if (weightedAverage >= 80 && weightedAverage <= 84) {
+			    remarks = "PASSED";
+			  } else if (weightedAverage >= 85 && weightedAverage <= 89) {
+			    remarks = "PASSED";
+			  } else if (weightedAverage >= 90 && weightedAverage <= 100) {
+			    remarks = "PASSED";
+			  } else {
+			    remarks = "DOES NOT EXIST";
+			  }
+
+	  document.getElementById('result').innerHTML = "GWA: " + weightedAverage.toFixed(2) + "<br>" + descriptor + "<br>" + remarks;
+	}
+	</script>
+</body>
+</html>
